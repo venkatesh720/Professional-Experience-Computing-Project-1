@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Check required files exist
+        run: |
+          test -f README.md
+          test -f docs/requirements.md
+          test -f docs/usecase.png
+          test -f docs/sequence.png
+          test -f docs/class.png
+          echo "All required files present"
