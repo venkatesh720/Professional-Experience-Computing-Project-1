@@ -12,9 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
+      - name: Debug repository files
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files in current directory:"
+          ls -la
+          echo "Files in repository:"
+          find . -maxdepth 4 -type f
 
       - name: Check required files exist
         run: |
